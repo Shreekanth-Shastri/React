@@ -1,0 +1,30 @@
+[
+    {
+        "id": 329874,
+        "name": "Book",
+        "price": 49.99,
+        "noOfItemInStock": 100,
+        "imgUrl": "/images/Book.jpg"
+    },
+    {
+        "id": 329875,
+        "name": "Mobile Phone",
+        "price": 999.99,
+        "noOfItemInStock": 101,
+        "imgUrl": "/images/Phone.jpg"
+    },
+    {
+        "id": 329876,
+        "name": "Laptop",
+        "price": 1199.99,
+        "noOfItemInStock": 102,
+        "imgUrl": "/images/Laptop.jpg"
+    },
+    {
+        "id": 329877,
+        "name": "Table",
+        "price": 99.99,
+        "noOfItemInStock": 103,
+        "imgUrl": "/images/Table.jpg"
+    }
+]
