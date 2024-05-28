@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { redirect } from "react-router-dom";
 
 export function NewProduct() {
 
