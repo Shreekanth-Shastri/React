@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { redirect } from "react-router-dom";
 
 export function NewProduct() {
 
@@ -26,8 +27,21 @@ export function NewProduct() {
 
     function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        const jsonValue = JSON.stringify(productDetails);
-        alert("send jsonValue to api to store in db: " + jsonValue);
+        const reqHeaders = new Headers();
+        reqHeaders.append("Content-Type", "application/json");
+        reqHeaders.append("Authorization", "Bearer qwertyuiopasdfghjklzxcvbnm");
+        const payload = JSON.stringify(productDetails);
+        var requestOptions = {
+            method: "POST",
+            headers: reqHeaders,
+            body: payload
+        }
+        const URL = "https://some-domain.com/endpoint";
+        fetch(URL, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log("error", error));
+        alert("send jsonValue to api using fetch: " + payload);
     }
 
     return (
