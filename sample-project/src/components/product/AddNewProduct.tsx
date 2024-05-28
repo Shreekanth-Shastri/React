@@ -6,20 +6,28 @@ export function NewProduct() {
     interface ProductDetails {
         productName: string;
         noOfItemsInStock: number;
-        price: number
+        price: number;
+        category: string;
     };
 
-    const [productDetails, setProductDetails] = useState<ProductDetails>({ productName: "null", noOfItemsInStock: 0, price: 0 });
+    const [productDetails, setProductDetails] = useState<ProductDetails>({ productName: "null", noOfItemsInStock: 0, price: 0, category: "Misc" });
 
     function handleOnChange(event: ChangeEvent<HTMLInputElement>): void {
         const name = event.target.name;
         const value = event.target.value;
-        setProductDetails(values => ({ ...values, [name]: value }))
+        setProductDetails(productDetails => ({ ...productDetails, [name]: value }));
+    }
+
+    function handleOnChangeSelect(event: ChangeEvent<HTMLSelectElement>): void {
+        const name = event.target.name;
+        const value = event.target.value;
+        setProductDetails(productDetails => ({ ...productDetails, [name]: value }));
     }
 
     function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        alert(JSON.stringify(productDetails));
+        const jsonValue = JSON.stringify(productDetails);
+        alert("send jsonValue to api to store in db: " + jsonValue);
     }
 
     return (
@@ -31,7 +39,7 @@ export function NewProduct() {
                         <label>Product Name:</label>
                     </Col>
                     <Col>
-                        <input type="text" value={productDetails.productName} onChange={handleOnChange} />
+                        <input type="text" name="productName" value={productDetails.productName} onChange={handleOnChange} />
                     </Col>
                     <Col>&nbsp;</Col>
                     <Col>&nbsp;</Col>
@@ -41,7 +49,7 @@ export function NewProduct() {
                         <label>No of items in stock: </label>
                     </Col>
                     <Col>
-                        <input type="text" value={productDetails.noOfItemsInStock} onChange={handleOnChange} />
+                        <input type="text" name="noOfItemsInStock" value={productDetails.noOfItemsInStock} onChange={handleOnChange} />
                     </Col>
                     <Col>&nbsp;</Col>
                     <Col>&nbsp;</Col>
@@ -51,7 +59,21 @@ export function NewProduct() {
                         <label>Price:</label>
                     </Col>
                     <Col>
-                        <input type="text" value={productDetails.price} onChange={handleOnChange} />
+                        <input type="text" name="price" value={productDetails.price} onChange={handleOnChange} />
+                    </Col>
+                    <Col>&nbsp;</Col>
+                    <Col>&nbsp;</Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>Category:</label>
+                    </Col>
+                    <Col>
+                        <select name="category" value={productDetails.category} onChange={handleOnChangeSelect}>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Misc">Misc</option>
+                        </select>
                     </Col>
                     <Col>&nbsp;</Col>
                     <Col>&nbsp;</Col>
@@ -67,7 +89,7 @@ export function NewProduct() {
                     <Col>&nbsp;</Col>
                 </Row>
                 <Row>
-                    <Col>&nbsp;</Col>                    
+                    <Col>&nbsp;</Col>
                     <Col>
                         <input type="submit" value="Submit"></input>
                     </Col>
